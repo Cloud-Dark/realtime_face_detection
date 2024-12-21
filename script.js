@@ -53,7 +53,24 @@ video.addEventListener('play', () => {
     faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
     faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
 
-    resizedDetections.forEach((detection) => {
+    let previousDetections = [];
+
+    // Interpolasi posisi untuk pergerakan lebih halus
+    const smoothedDetections = resizedDetections.map((detection, i) => {
+        const previous = previousDetections[i] || detection;
+        const box = {
+          x: previous.detection.box.x + (detection.detection.box.x - previous.detection.box.x) * 0.2,
+          y: previous.detection.box.y + (detection.detection.box.y - previous.detection.box.y) * 0.2,
+          width: previous.detection.box.width + (detection.detection.box.width - previous.detection.box.width) * 0.2,
+          height: previous.detection.box.height + (detection.detection.box.height - previous.detection.box.height) * 0.2
+        };
+        return { ...detection, detection: { ...detection.detection, box },
+                 landmarks: detection.landmarks, expressions: detection.expressions };
+      });
+  
+      previousDetections = smoothedDetections;
+
+      smoothedDetections.forEach((detection) => {
       const { age, gender, genderProbability } = detection;
       const box = detection.detection.box;
       const drawOptions = {
