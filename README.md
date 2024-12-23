@@ -2,6 +2,7 @@
 # Real-Time Face Detection
 
 This project is a real-time face detection application using the `face-api.js` library. The app detects faces, identifies facial landmarks, recognizes expressions, and estimates age and gender from a video feed.
+![image](https://github.com/user-attachments/assets/366bedbc-2f55-40ae-b7f1-77c82d3fab5f)
 
 ## Features
 
@@ -100,3 +101,4 @@ This project is licensed under the MIT License.
 
 - [face-api.js](https://github.com/justadudewhohacks/face-api.js) - The core library used for face detection and analysis.
 - [MDN Web Docs](https://developer.mozilla.org/) - References for HTML5, CSS3, and JavaScript.
+- [Face Sample Video](https://github.com/intel-iot-devkit/sample-videos?tab=readme-ov-file) - Source of video example
